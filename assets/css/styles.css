@@ -1,0 +1,360 @@
+/* *========================================
+      * FONTS *
+*======================================== */
+/* overpass-regular - latin */
+@font-face {
+  font-display: swap;
+  font-family: "Overpass";
+  font-style: normal;
+  font-weight: 400;
+  src: url("../fonts/overpass-v19-latin-regular.woff2") format("woff2");
+}
+/* overpass-700 - latin */
+@font-face {
+  font-display: swap;
+  font-family: "Overpass";
+  font-style: normal;
+  font-weight: 700;
+  src: url("../fonts/overpass-v19-latin-700.woff2") format("woff2");
+}
+
+/* *========================================
+      * VARIABLES *
+*======================================== */
+:root {
+  /*  colors */
+  --clr-white: hsl(0, 0%, 100%);
+  --clr-black: hsl(0, 0%, 0%);
+
+  --clr-grey-950: hsl(216, 12%, 8%);
+  --clr-grey-900: hsl(213, 19%, 18%);
+  --clr-grey-500: hsl(217, 12%, 63%);
+
+  --clr-orange-500: rgb(252, 118, 20);
+
+  --clr-gradient-l: hsl(215, 20%, 17%);
+  --clr-gradient-r: hsl(216, 24%, 12%);
+
+  /* font family */
+  --ff-base: "Overpass", Arial, Helvetica, sans-serif;
+
+  /* font size */
+  --fs-14: 0.875rem;
+  --fs-15: 0.9375rem;
+  --fs-16: 1rem;
+  --fs-24: 1.5rem;
+  --fs-28: 1.75rem;
+
+  /* font weight */
+  --fw-bold: 700;
+  --fw-regular: 400;
+}
+
+/* *========================================
+      * RESET *
+*======================================== */
+*,
+::after,
+::before {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+img,
+svg {
+  max-width: 100%;
+  display: block;
+}
+
+h1,
+h2,
+h3 {
+  margin: 0;
+  padding: 0;
+}
+
+button {
+  appearance: none;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  margin: 0;
+}
+
+ul[role="list"],
+ol[role="list"] {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* *========================================
+      * BASE *
+*======================================== */
+body {
+  font-family: var(--ff-base);
+  background-color: var(--clr-grey-950);
+  color: var(--clr-grey-500);
+}
+
+/* Title -------------------------------- */
+h1 {
+  color: var(--clr-white);
+  font-size: var(--fs-24);
+  font-weight: var(--fw-bold);
+  line-height: 30px;
+}
+
+/* Buttons SUBMIT -------------------------------- */
+button {
+  font-size: var(--fs-14);
+  font-weight: var(--fw-bold);
+  line-height: 18px;
+  letter-spacing: 1.87px;
+
+  padding-block: 1rem;
+  border-radius: 30px;
+  background-color: var(--clr-orange-500);
+  color: var(--clr-grey-950);
+}
+button:hover,
+button:focus-visible {
+  background-color: var(--clr-white);
+  transition: all 0.3s ease;
+}
+button:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(252, 118, 20, 1);
+  transform: scale(1.02);
+}
+.hidden {
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(20px);
+  pointer-events: none;
+}
+
+/* *========================================
+      * MAIN *
+*======================================== */
+.container {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+}
+/* SECTION QUESTION --------------------- */
+.question__section.hidden,
+.thanks__section.hidden {
+  opacity: 0;
+  visibility: hidden;
+}
+.section {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  width: 20.4375rem;
+  height: 22.5rem;
+  border-radius: 15px;
+  background: linear-gradient(
+    180deg,
+    var(--clr-gradient-l),
+    var(--clr-gradient-r)
+  );
+
+  transition: all 0.5s ease-in-out;
+  opacity: 1;
+  visibility: visible;
+}
+.question__section {
+  padding: 1.5rem;
+}
+.card__img-question {
+  width: 40px;
+  height: 40px;
+  border-radius: 100%;
+  background-color: var(--clr-grey-900);
+
+  display: grid;
+  place-content: center;
+}
+.card__img-question img {
+  width: 14px;
+}
+.card__question {
+  display: grid;
+  gap: 1.5rem;
+}
+.card__text {
+  display: grid;
+  gap: 1rem;
+}
+.card__text > p {
+  font-size: var(--fs-14);
+  font-weight: var(--fw-regular);
+  line-height: 22px;
+}
+
+/* Custom Input Radio (choices 1 to 5) -------------------------------- */
+.fieldset-group {
+  border: none;
+}
+.choices {
+  display: flex;
+  justify-content: space-between;
+}
+.choice {
+  width: 42px;
+  height: 42px;
+  background-color: var(--clr-grey-900);
+  border-radius: 50%;
+  position: relative;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+input[type="radio"] {
+  position: absolute;
+  opacity: 0;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+  z-index: 99;
+}
+.custom__radio {
+  font-size: var(--fs-14);
+  line-height: 18px;
+  font-weight: var(--fw-bold);
+  width: 42px;
+  height: 42px;
+  background-color: var(--clr-grey-900);
+  border-radius: 50%;
+  vertical-align: middle;
+  position: relative;
+  transition: all 0.3s ease;
+  z-index: 1;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.choice:hover .custom__radio {
+  background-color: var(--clr-white);
+  color: var(--clr-grey-900);
+}
+.choice input:focus-visible ~ .custom__radio {
+  outline: 3px solid var(--clr-orange-500);
+  outline-offset: 4px;
+  box-shadow: 0 0 0 2px var(--clr-white);
+}
+
+.choice input:checked ~ .custom__radio {
+  background-color: var(--clr-orange-500);
+  color: var(--clr-grey-900);
+}
+
+/* SECTION THANKS --------------------- */
+.thanks__section {
+  padding: 2rem 1.5rem;
+}
+.card__thanks {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+}
+.card__img-thanks {
+  width: 9rem;
+}
+.card__score {
+  padding: 0.25rem 1rem;
+  background-color: var(--clr-grey-900);
+  color: var(--clr-orange-500);
+  border-radius: 20px;
+  font-size: var(--fs-14);
+  font-weight: var(--fw-regular);
+  line-height: 22px;
+}
+
+.card__thanks h1 {
+  text-align: center;
+}
+.card__thanks p {
+  text-align: center;
+}
+
+/* *========================================
+      * MEDIA *
+*======================================== */
+/* SECTION QUESTION ---------------------------------------------------- */
+@media (min-width: 768px) {
+  .section {
+    width: 25.75rem;
+    height: 26rem;
+    border-radius: 30px;
+  }
+  .question__section {
+    padding: 2rem;
+  }
+  .card__img-question {
+    width: 48px;
+    height: 48px;
+  }
+  .card__img-question img {
+    width: 17px;
+  }
+  .card__question {
+    gap: 2rem;
+  }
+  h1 {
+    font-size: var(--fs-28);
+    line-height: 35px;
+  }
+  .card__text > p {
+    font-size: var(--fs-15);
+    line-height: 24px;
+  }
+  .card__list {
+    gap: 1.5rem;
+  }
+
+  /* Custom Input Radio (choices 1 to 5) -------------------------------- */
+  .choice {
+    width: 51px;
+    height: 51px;
+  }
+  .custom__radio {
+    width: 51px;
+    height: 51px;
+    font-size: var(--fs-16);
+    line-height: 24px;
+  }
+  /* SECTION THANKS ----------------------------------------------------- */
+  .thanks__section {
+    padding: 2.5rem 2rem;
+  }
+  .card__thanks {
+    gap: 2rem;
+  }
+  .card__img-thanks {
+    width: 10.125rem;
+  }
+  .card__score {
+    padding: 0.25rem 1rem;
+    font-size: var(--fs-15);
+    line-height: 24px;
+  }
+}
