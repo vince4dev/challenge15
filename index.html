@@ -35,6 +35,7 @@
               feedback is appreciated to help us improve our offering!
             </p>
             <fieldset class="fieldset-group">
+              <legend class="sr-only">Select a rating from 1 to 5</legend>
               <div class="choices">
                 <label for="score-1" class="choice">
                   <input
@@ -89,7 +90,23 @@
               </div>
             </fieldset>
           </div>
-          <button id="submit-btn">SUBMIT</button>
+          <div class="submit__container">
+            <button id="submit-btn">SUBMIT</button>
+            <div
+              id="error-message-container"
+              class="error__message"
+              role="alert"
+              aria-live="polite"
+              aria-atomic="true"
+            >
+              <img
+                class="error__message-icon"
+                src="./assets/images/icon-error.svg"
+                alt=""
+              />
+              <span id="error-message">Please select a rating</span>
+            </div>
+          </div>
         </article>
       </section>
 

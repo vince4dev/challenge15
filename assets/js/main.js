@@ -14,6 +14,8 @@ const UI = {
   submitButton: document.getElementById("submit-btn"),
   selectedRadio: document.querySelector(".choices"),
   scoreSpan: document.getElementById("card-score"),
+  errorMessage: document.getElementById("error-message"),
+  errorMessageContainer: document.getElementById("error-message-container"),
 };
 
 // ==================================================================
@@ -35,19 +37,35 @@ const view = {
         radio.checked = false;
       });
   },
+
+  checkRadio() {
+    const selectedRating = UI.selectedRadio.querySelector(
+      "input[type='radio']:checked",
+    );
+
+    if (!selectedRating) {
+      UI.errorMessage.textContent = "Please select a rating";
+      UI.errorMessageContainer.style.display = "flex";
+      return;
+    }
+
+    UI.errorMessageContainer.style.display = "none";
+    UI.scoreSpan.textContent = state.score;
+    view.showSection("thanks");
+  },
 };
 
 // ==================================================================
 //  CLICK BUTTONS
 // ==================================================================
 UI.submitButton.addEventListener("click", () => {
-  UI.scoreSpan.textContent = state.score;
-  view.showSection("thanks");
+  view.checkRadio();
 });
 
 UI.selectedRadio.addEventListener("change", (event) => {
+  UI.errorMessageContainer.style.display = "none";
   if (event.target.name === "score") {
-    state.score = event.target.value;
+    state.score = Number(event.target.value);
   }
 });
 
